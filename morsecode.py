@@ -120,6 +120,10 @@ def is_validated_morse_code(user_input):
     # ===Modify codes below=============
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당 또는 필요에 따라 자유로운 수정
     lst = re.findall('[.-]+', user_input)
+    check_alpha = re.findall('[a-zA-Z]+', user_input)
+
+    if len(check_alpha) != 0:
+        return False
 
     if len(lst) != len(user_input.split()):
         return False
@@ -273,6 +277,9 @@ def main():
             print(get_help_message())
             continue
         
+        # print(is_validated_morse_code(user_input))
+        # print(is_validated_english_sentence(user_input))
+
         print(decoding_sentence(user_input)) \
             if is_validated_morse_code(user_input) \
             else print(encoding_sentence(user_input)) \
